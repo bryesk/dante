@@ -70,7 +70,7 @@ try:
     if len(sys.argv) > 1:  #the first argument in sys.argv is always the script name
         file_names = sys.argv[1:]
         #run the changeToFasta command on every file name if other commands are given
-        for filename in sys.stdin:
+        for filename in file_names:
             changeToFASTA(filename)
     else:
         file_name = str(raw_input('Enter the file to be changed: '))
