@@ -1,6 +1,6 @@
 # dante
 
-DANTE: DNA and Nucleotide Tools for Enviromental work.
+dante: DNA and Nucleotide Tools for Enviromental work.
 
 
 ##INTRODUCTION
@@ -25,12 +25,11 @@ Run on command line as: python [directory]/FASTAtoPHYLIPandNAMES.py [filename]
 ###FASTQtoFASTA
 Run on command line as: python [directory]/FASTQtoFASTA.py [filename]
 
-##GetRepsFromFasta
+###GetRepsFromFasta
 Run on command line as: python [directory]/GetRepsFromFasta.py [filename]
 
 ###PrimerBLASTstats
 Run on command line as:  python [directory]/PrimerBLASTstats.py [filename]
-
 
 
 ##CHANGELOG
