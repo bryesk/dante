@@ -2,23 +2,19 @@
 
 DANTE: DNA and Nucleotide Tools for Enviromental work.
 
-**********
-INTRODUCTION
-**********
+
+##INTRODUCTION
 
 This file is a collection of tools that help with processing bioinformatic information generated when working with environmental samples. 
 
 
-**********
-REQUIRMENTS
-**********
+##REQUIRMENTS
 
-As of now, all of these files are written in Python.
+As of now, all of these files are written in Python. If you have a standard recent of Python installed, it should work. 
 
 
-**********
-INSTALLATION
-**********
+#INSTALLATION
 
 As of now, the files are self-sustaining. Download the ones you need and run as below. 
 
+#CHANGELOG
