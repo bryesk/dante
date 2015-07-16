@@ -21,12 +21,12 @@ def getFilename(whole_name):
     new_name = trun_rev[::-1]
     return (new_name)
 
-#takes a string and fills up the front until it is 10 characters long. 
+#takes a string and fills up the front until it is 7 characters long. Then appends 'SEQ' to the front. 
 def makeTen(num_string):
     num_list = list(num_string)
-    while len(num_list) < 10:
+    while len(num_list) < 7:
       num_list.insert(0,'0')
-    return("".join(num_list))  
+    return('SEQ' + "".join(num_list))  
         
 def createNames(refFile):
 
