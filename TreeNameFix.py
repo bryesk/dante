@@ -50,7 +50,10 @@ with open (names_file, 'r') as f:
             current_key = line.strip() #Creates a key to use in a dictionary. Removes newline from key.
         else:
             key_switch = True
-            names_dict[current_key] = line.strip() #Creates a dictionary key/value pair. Removes newline from value.
+            if len(line.strip()) <= 50: 
+                names_dict[current_key] = line.strip() #Creates a dictionary key/value pair. Removes newline from value.
+            else:
+                names_dict[current_key] = line.strip()[:49]
 
 with open (tre_file, 'r') as f:
     #creates new file name for the new tre, creates, and opens the file
