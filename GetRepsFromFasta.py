@@ -15,8 +15,8 @@ import traceback
 import dante
 
 try: 
-
-    def getReps(file_name_fun):
+    #If filenames were passed at the command line, runs getReps on every file. Else, asks for files for input
+    for file_name_fun in dante.makeFileList(sys.argv):
         
         with open(file_name_fun,'r') as f:
             #creates new file name for representative sequences, creates, and opens the file
@@ -53,17 +53,7 @@ try:
                     if printsequences == True:
                         newFile.write(line)
             newFile.close()
-
-    #If filenames were passed at the command line, runs getReps on every file
-
-    if len(sys.argv) > 1:  #the first argument in sys.argv is always the script name
-        file_names = sys.argv[1:] #removes the script name from the list of files to be tested
-        #Runs get reps on each file
-        for filename in file_names:
-            getReps(filename)
-    else:
-        file_name = str(raw_input('Enter the file to be sampled: '))
-        getReps(file_name)
+    
 except:
     traceback.print_exc(file=sys.stdout)
     exit(0)
