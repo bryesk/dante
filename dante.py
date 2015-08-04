@@ -32,4 +32,10 @@ def getEmail ():
         if not flag:
             print "E-mail does not seem vaild."
     return email.strip()
+
+###PRINT OUTPUT###
+def printOutput(file_name_print):
+    print "\n"
+    print ("Output File Name: %s") %(file_name_print)
+    print "\n"
     
