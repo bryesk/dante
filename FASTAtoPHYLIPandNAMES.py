@@ -35,7 +35,7 @@ def createNames(refFile):
             
         #opens a new file name for names
         file_name_names = getFilename(refFile)
-        file_name_names = directory+"/"+file_name_names+ ".names"
+        file_name_names = directory+"/"+file_name_names+ ".dnames"
         namesFile = open(file_name_names,'w')
             
         
