@@ -37,5 +37,5 @@ def getEmail ():
 def printOutput(file_name_print):
     print "\n"
     print ("Output File Name: %s") %(file_name_print)
-    print "\n"
+    
     
