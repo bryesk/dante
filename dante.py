@@ -37,5 +37,23 @@ def getEmail ():
 def printOutput(file_name_print):
     print "\n"
     print ("Output File Name: %s") %(file_name_print)
+
+###FASTA CLEAN###
+def fastaClean(file_name):
+    flag = True
+    with open(file_name,'r') as f:
+        for line in f:
+            if "\r" in line:
+                flag = False
+    if flag:
+        return (file_name)
+    else:
+        file_name_new= makeNewFileName('Desktop/Output', file_name, '.no_cr.fasta')
+        with open(file_name, 'r') as f, open(file_name_new, 'w') as g:
+            for line in f:
+                g.write(line.replace('\r','\n'))
+        return (file_name_new)
+
+
     
     
