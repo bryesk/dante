@@ -3,8 +3,7 @@
 #It then returns a PHYLIP sequential formatted sequence file.  
 #This program allows multiple file names to be called as arguments.
 
-#Last updated: 2015.8.10
-#Known bugs: for some files, reads the entire file as one line. Unknown why. 
+#Last updated: 2015.8.12
 
 import sys            #for helping with command line interface
 import dante          #main dante functions
@@ -13,12 +12,13 @@ import traceback      #for helping with errors
 try:
     
     for file_name in dante.makeFileList(sys.argv):
-        file_name_phylip = dante.makeNewFileName ("Desktop/Output", file_name, ".phylips")
-        file_name_names = dante.makeNewFileName ("Desktop/Output", file_name, ".dnames")
+        file_clean = dante.fastaClean(file_name)
+        file_name_phylip = dante.makeNewFileName ("Desktop/Output", file_clean, ".phylips")
+        file_name_names = dante.makeNewFileName ("Desktop/Output", file_clean, ".dnames")
         dante.printOutput(file_name_phylip)
         dante.printOutput(file_name_names)
-        
-        with open(file_name,'r') as f: 
+
+        with open(file_clean,'r') as f: 
             
             #NEED TO GO THROUGH ALL THE LINES OF THE REFERENCE FILE AND WRITE THE HEADER LINE TO A NEW LIST
             
@@ -34,7 +34,7 @@ try:
                         character_number = character_number + len(''.join(line.split()))
 
             
-        with open(file_name,'r') as f, open(file_name_phylip, 'w') as g, open(file_name_names,'w') as h:
+        with open(file_clean,'r') as f, open(file_name_phylip, 'w') as g, open(file_name_names,'w') as h:
             #Write phylip header (contains number of sequences and the number of characters in each sequence
             g.write(str(sequence_number) + " " + str(character_number))
             #initial sequence name
@@ -60,6 +60,3 @@ try:
 except:
     traceback.print_exc(file=sys.stdout)
     exit(0)
-
-#test python link/dante/FASTAtoPHYLIPandNAMES.py link/seqs/mothur/MFArc_Files/MFArc.unique.fasta
-
