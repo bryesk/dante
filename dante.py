@@ -1,5 +1,7 @@
 import os
 import re
+import time
+import sys
 
 
 ###MAKE NEW FILE NAME ###
@@ -54,6 +56,15 @@ def fastaClean(file_name):
                 g.write(line.replace('\r','\n'))
         return (file_name_new)
 
+###LOGGING SYSTEM###
+
+def log (comment):
+    log_file = os.path.dirname(os.path.realpath(sys.argv[0])) + "/dante.log"
+    with open (log_file, 'a') as f:
+        print_comment = time.strftime("%d/%m/%Y") + " " + time.strftime("%I:%M:%S") + ": " + comment + "\n"
+        f.write(print_comment)
+        print print_comment
+    
 
     
     
