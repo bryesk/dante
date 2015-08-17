@@ -4,12 +4,10 @@
 #import from Biopython
 from Bio.Blast import NCBIXML
 from Bio import Entrez
-#import traceback to help with exceptions
-import traceback
-#import dante functions
-import dante
-#import sys functions
-import sys
+
+import sys            #for helping with command line interface
+import dante          #main dante functions
+import traceback      #for helping with errors
 
 try:
     #Talking with the NCBI database requires an e-mail address
@@ -20,7 +18,7 @@ try:
 
         name_set = set()
         name_list=[]
-    
+        
         result_handle = open(filename,'r') #open the xml file for reading
         blast_records = NCBIXML.parse(result_handle) #parses the file to a blast_records object
         total = 0
@@ -28,20 +26,25 @@ try:
             for alignment in record.alignments:
                 name_set.add(alignment.title.split('|')[1]) #adds id number to set (removes duplicates)
 
-        with open(dante.makeNewFileName ('Desktop/Output', filename, "seqs.fasta"),'w') as f:
-            print ('Output file: %s') %(f)
+        new_file = dante.makeNewFileName ('Desktop/Output', filename, "seqs.fasta")
+        
+        with open(new_file,'w') as f:
             for value in name_set: #walks through every id number
                 #Biopython for retreving fasta files
                 handle = Entrez.efetch(db="nucleotide", id=value, rettype="fasta", retmode="text")
                 f.write(handle.read())
 
+        dante.log("Program Ran: BlastXMLtoFasta.py")
+        dante.log("Input file: " + filename)
+        dante.log("Output file:" + new_file)
 
 except:
     traceback.print_exc(file=sys.stdout)
     exit(0)
 
 
-
+#Test File
+# python link/dante/BlastXMLtoFasta.py link/dante/testfiles/TestBLAST.xml
 
 
 
