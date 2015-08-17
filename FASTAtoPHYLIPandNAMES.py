@@ -15,8 +15,7 @@ try:
         file_clean = dante.fastaClean(file_name)
         file_name_phylip = dante.makeNewFileName ("Desktop/Output", file_clean, ".phylips")
         file_name_names = dante.makeNewFileName ("Desktop/Output", file_clean, ".dnames")
-        dante.printOutput(file_name_phylip)
-        dante.printOutput(file_name_names)
+
 
         with open(file_clean,'r') as f: 
             
@@ -56,7 +55,16 @@ try:
                     
                 else:
                     g.write(''.join(line.split()))
-            
+
+           
+        dante.log ("Program ran: FASTAtoPHYLIPandNAMES.py")
+        dante.log ("Input file: " + file_name)
+        dante.log ("Output file 1: " + file_name_phylip)
+        dante.log ("Output file 2: " + file_name_names)
+        
 except:
     traceback.print_exc(file=sys.stdout)
     exit(0)
+
+#TEST COMMAND
+#  python link/dante/FASTAtoPHYLIPandNAMES.py link/dante/testfiles/TestAlign.fasta
