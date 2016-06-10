@@ -65,6 +65,23 @@ def log (comment):
         f.write(print_comment)
         print print_comment
     
+#Get a number.###
+def getNumber(s):
+    while (True):
+        number = str(raw_input(s))
+        try:
+            float(s)
+            return number
+        except ValueError:
+            null
 
+#READ A FASTA FILE#
+def readFASTA (FASTAfile):
+    from Bio import SeqIO
+
+    seq_list = []
     
+    for seq_record in SeqIO.parse(FASTAfile, "fasta"):
+        seq_list.append(seq_record.id,seq_record.seq)
+    return seq_list
     
