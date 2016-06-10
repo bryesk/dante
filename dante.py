@@ -59,12 +59,41 @@ def fastaClean(file_name):
 ###LOGGING SYSTEM###
 
 def log (comment):
+    if not isinstance(comment,basestring):
+        comment = str(comment)
     log_file = os.path.dirname(os.path.realpath(sys.argv[0])) + "/dante.log"
     with open (log_file, 'a') as f:
         print_comment = time.strftime("%d/%m/%Y") + " " + time.strftime("%I:%M:%S") + ": " + comment + "\n"
         f.write(print_comment)
-        print print_comment
     
+#Get a number.###
+def getNumber(s):
+    while (True):
+        number = str(raw_input(s)).strip()
+        try:
+            float(number)
+            return number
+        except ValueError:
+            None
 
+#READ A FASTA FILE#
+def readFASTA (FASTAfile):
+    from Bio import SeqIO
+
+    seq_list = []
     
+    for seq_record in SeqIO.parse(FASTAfile, "fasta"):
+        seq_list.append(seq_record.id,seq_record.seq)
+    return seq_list
     
+def BLASTSummary(XMLfile, SummaryFile):
+    from Bio.Blast import NCBIXML
+    with open(XMLfile,'r') as result_handle, open (SummaryFile, 'w') as f:
+            f.write(str("Original Name"+ "\t"+"ID"+"\t"+ "Name" +"\t"+ "E-value"+"\t"+"Ident" + "\n"))
+            for blast_record in NCBIXML.parse(result_handle):
+                if len(blast_record.alignments) >0:
+                    for alignment in blast_record.alignments:
+                        for hsp in alignment.hsps:
+                            f.write(str(blast_record.query) + "\t"+ alignment.hit_id+"\t"+alignment.hit_def+"\t"+ str(hsp.expect) +"\t"+ '{0:.2f}'.format(float(hsp.positives)/hsp.align_length) + "\n")
+                else:
+                    f.write(str(blast_record.query) + "\t" + "ERROR" + '\n')
